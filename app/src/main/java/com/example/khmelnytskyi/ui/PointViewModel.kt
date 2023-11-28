@@ -33,6 +33,13 @@ class PointViewModel: ViewModel() {
         }
     }
 
+    fun setPoint(point:InterestPoint){
+        _uiState.update {
+            currentState->
+            currentState.copy(currentPoint = point)
+        }
+    }
+
     fun resetType(){
         _uiState.value = PointUISate()
     }

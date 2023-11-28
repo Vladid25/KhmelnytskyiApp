@@ -18,6 +18,9 @@ import com.example.khmelnytskyi.database.Database.cafes
 import com.example.khmelnytskyi.database.Database.parks
 import com.example.khmelnytskyi.database.Database.restaurants
 import com.example.khmelnytskyi.database.Database.types
+import com.example.khmelnytskyi.ui.DisplayCafe
+import com.example.khmelnytskyi.ui.DisplayPark
+import com.example.khmelnytskyi.ui.DisplayRestaurant
 import com.example.khmelnytskyi.ui.PointTypes
 import com.example.khmelnytskyi.ui.PointViewModel
 import com.example.khmelnytskyi.ui.SelectPointScreen
@@ -63,6 +66,33 @@ fun KhmelnytskyiApp(
             }
             composable(route = KhmelnytskyiAppScreen.Example.name){
                SelectPointScreen(options = viewModel.currentList)
+            }
+
+            composable(route = KhmelnytskyiAppScreen.Point.name){
+                if(uiState.currentPoint?.type == PointTypes.Restaurant){
+                    restaurants.forEach {
+                        item->
+                        if(item.name == uiState.currentPoint!!.name){
+                            DisplayRestaurant(item)
+                        }
+                    }
+                }
+                if(uiState.currentPoint?.type == PointTypes.Cafe){
+                    cafes.forEach {
+                            item->
+                        if(item.name == uiState.currentPoint!!.name){
+                            DisplayCafe(item)
+                        }
+                    }
+                }
+                if(uiState.currentPoint?.type == PointTypes.Park){
+                    parks.forEach {
+                            item->
+                        if(item.name == uiState.currentPoint!!.name){
+                            DisplayPark(item)
+                        }
+                    }
+                }
             }
         }
     }

@@ -60,7 +60,7 @@ fun TypeItemRow(
 ){
     Card(
         onClick = {
-                  onTypeClicked(typePoint.types)
+            onTypeClicked(typePoint.types)
         },
         modifier = Modifier
             .fillMaxWidth()
