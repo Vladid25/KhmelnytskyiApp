@@ -27,7 +27,8 @@ import com.example.khmelnytskyi.ui.theme.Typography
 
 @Composable
 fun SelectPointScreen(
-    options:List<InterestPoint>
+    options:List<InterestPoint>,
+    onPointClicked:(InterestPoint)->Unit
 ){
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -35,7 +36,7 @@ fun SelectPointScreen(
         Column {
             options.forEach{
                     item ->
-                PointItemRow(point = item)
+                PointItemRow(point = item, onPointClicked)
             }
         }
 
@@ -45,10 +46,13 @@ fun SelectPointScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PointItemRow(
-    point:InterestPoint
+    point:InterestPoint,
+    onPointClicked:(InterestPoint)->Unit
 ){
     Card(
-        onClick = {},
+        onClick = {
+                  onPointClicked(point)
+        },
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
@@ -80,5 +84,5 @@ fun PointItemRow(
 @Preview
 @Composable
 fun SelectPointScreenPreview(){
-    SelectPointScreen(parks)
+    SelectPointScreen(parks, {})
 }

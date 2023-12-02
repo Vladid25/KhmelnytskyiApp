@@ -18,6 +18,7 @@ import com.example.khmelnytskyi.database.Database.cafes
 import com.example.khmelnytskyi.database.Database.parks
 import com.example.khmelnytskyi.database.Database.restaurants
 import com.example.khmelnytskyi.database.Database.types
+import com.example.khmelnytskyi.model.InterestPoint
 import com.example.khmelnytskyi.ui.DisplayCafe
 import com.example.khmelnytskyi.ui.DisplayPark
 import com.example.khmelnytskyi.ui.DisplayRestaurant
@@ -65,7 +66,13 @@ fun KhmelnytskyiApp(
                 )
             }
             composable(route = KhmelnytskyiAppScreen.Example.name){
-               SelectPointScreen(options = viewModel.currentList)
+               SelectPointScreen(
+                   options = viewModel.currentList,
+                   onPointClicked = {
+                       viewModel.setPoint(it)
+                       navController.navigate(KhmelnytskyiAppScreen.Point.name)
+                   }
+               )
             }
 
             composable(route = KhmelnytskyiAppScreen.Point.name){
